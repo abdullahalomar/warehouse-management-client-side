@@ -1,14 +1,27 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const navigateLogin = () => {
+    navigate('/login')
+  }
+  const handleRegister = event => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    
+  }
     return (
         <div className='container mt-4'>
             <h2 className='mb-3'>Please Register</h2>
          
-            <Form>
+  <Form onSubmit={handleRegister}>
   <Form.Group className="mb-3" controlId="formBasicText">
     <Form.Label>Name</Form.Label>
     <Form.Control type="text" placeholder="Enter Your Name" required/>
@@ -29,10 +42,12 @@ const Register = () => {
     <Form.Check type="checkbox" label="Check me out" />
   </Form.Group>
   <Button variant="secondary" type="submit">
-    Submit
+    Register
   </Button>
             </Form>
-            <h6 className='mt-3'>Already have an account? <Link to='/login'>Login</Link></h6> 
+            <div className='mt-3'>
+        <h6>Already have an account? <Link to='/login' className='text-secondary pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link></h6>
+        </div>
         </div>
     );
 };
