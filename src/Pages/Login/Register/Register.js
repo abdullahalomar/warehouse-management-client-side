@@ -11,11 +11,11 @@ const Register = () => {
             <Form>
   <Form.Group className="mb-3" controlId="formBasicText">
     <Form.Label>Name</Form.Label>
-    <Form.Control type="text" placeholder="Enter Your Name" />
+    <Form.Control type="text" placeholder="Enter Your Name" required/>
   </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Group className="mb-3" controlId="formBasicEmail" >
     <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Control type="email" placeholder="Enter email" required/>
     <Form.Text className="text-muted">
       We'll never share your email with anyone else.
     </Form.Text>
@@ -23,7 +23,7 @@ const Register = () => {
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
+    <Form.Control type="password" placeholder="Password" required/>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
     <Form.Check type="checkbox" label="Check me out" />
@@ -32,7 +32,7 @@ const Register = () => {
     Submit
   </Button>
             </Form>
-            <h6>Already have an account? <Link to='/login'>Login</Link></h6> 
+            <h6 className='mt-3'>Already have an account? <Link to='/login'>Login</Link></h6> 
         </div>
     );
 };
