@@ -5,12 +5,12 @@ const Inventory = (props) => {
 
     return (
         <div>
-                {/* <img src={picture} alt="" />
+                <img src={picture} alt="" />
                 <h3>{name}</h3>
                 <h4>Price: ${price}</h4>
                 <p>{short_desc}</p>
                 <h5>{quantity}</h5>
-                <p>{ supplier_name }</p> */}
+                <p>{ supplier_name }</p>
         </div>
     );
 };

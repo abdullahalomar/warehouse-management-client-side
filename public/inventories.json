@@ -1,14 +1,5 @@
 [
     {
-      "_id": "627f77c43b5720e3f4e146d2",
-      "quantity": 0,
-      "picture": "http://placehold.it/32x32",
-      "price": 443,
-      "name": "Kramer",
-      "supplier_name": "Rosemary",
-      "short_desc": "Dolore ex amet pariatur aliqua consectetur et nulla laborum voluptate dolore irure tempor. Enim enim cillum ad reprehenderit ut in voluptate pariatur commodo in enim eiusmod nisi. Voluptate ad ea ut duis anim magna aliqua excepteur commodo. Adipisicing mollit deserunt fugiat excepteur.\r\n"
-    },
-    {
       "_id": "627f77c4bf0d20a296df6c0c",
       "quantity": 1,
       "picture": "http://placehold.it/32x32",

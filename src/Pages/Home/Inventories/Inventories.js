@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Inventory from '../Home/Inventory/Inventory';
 
 const Inventories = () => {
     const [inventories, setInventories] = useState([]);
@@ -13,10 +14,10 @@ const Inventories = () => {
         <div>
             <h2>Inventory :{ inventories.length}</h2>
             {
-                inventories.map(inventory => <Inventories
+                inventories.map(inventory => <Inventory
                     key={inventory._id}
                     inventory = {inventory}
-                ></Inventories>)
+                ></Inventory>)
             }
         </div>
     );
