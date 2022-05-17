@@ -8,6 +8,8 @@ import NotFound from './Pages/Shared/NotFound/NotFound';
 import Inventories from './Pages/Home/Inventories/Inventories';
 import Register from './Pages/Login/Register/Register';
 import InventoryDetails from './Pages/InventoryDetails/InventoryDetails';
+import Check from './Pages/Check/Check';
+import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -20,6 +22,11 @@ function App() {
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/inventories' element={<Inventories></Inventories>}></Route>
         <Route path='/inventory/:inventoryId' element={<InventoryDetails></InventoryDetails>}></Route>
+        <Route path='/check' element={
+          <RequireAuth>
+            <Check></Check>
+          </RequireAuth>
+        }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
