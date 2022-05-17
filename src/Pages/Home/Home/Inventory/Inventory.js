@@ -8,15 +8,15 @@ const Inventory = (props) => {
     return (
         
         <div className='col-sm-12 col-md-6 col-lg-4 gx-5 gy-3'>
-            <div className='card' style={{width: '18rem'}}>
-            <img src={picture} alt=""  />
-            <div className='card-body'>
-                <h5 className='card-title'>{name}</h5>
+            <div class='card' style={{width: '18rem'}}>
+            <img src={picture} class="card-img-top" alt=""  />
+            <div class='card-body'>
+                <h5 class='card-title'>{name}</h5>
                 <h5>Price: ${price}</h5>
                 <h6>Quantity: {quantity}</h6>
                 <h6>Supplier: {supplier_name}</h6>
-                    <p className='card-text'>{short_desc}</p>
-                    <button className='btn btn-secondary'>Order Now: { name}</button>
+                    <p class='card-text'>{short_desc}</p>
+                    <button className='btn btn-secondary'>Stock Update</button>
             </div>
             </div>
         </div>

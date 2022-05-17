@@ -7,7 +7,7 @@ const Inventories = () => {
 
     return (
         <div className='container mt-5'>
-            <h2>Inventory :{ inventories.length}</h2>
+            <h2>Availabe Items :{ inventories.length}</h2>
             <div className='row'>
                 {
                         inventories.map(inventory => <Inventory
