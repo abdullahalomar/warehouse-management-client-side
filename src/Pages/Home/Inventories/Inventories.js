@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useInventories from '../../../hooks/useInventories';
 import Inventory from '../Home/Inventory/Inventory';
 
 const Inventories = () => {
-    const [inventories, setInventories] = useState([]);
-
-    useEffect(() => {
-        fetch('inventories.json')
-        .then(response => response.json())
-        .then(json=> setInventories(json))
-    },[])
+    const [inventories, setInventories] = useInventories(15);
 
     return (
-        <div>
+        <div className='container mt-5'>
             <h2>Inventory :{ inventories.length}</h2>
-            {
-                inventories.map(inventory => <Inventory
-                    key={inventory._id}
-                    inventory = {inventory}
-                ></Inventory>)
-            }
+            <div className='row'>
+                {
+                        inventories.map(inventory => <Inventory
+                            key={inventory._id}
+                            inventory = {inventory}
+                        ></Inventory>)
+                }
+           </div>
         </div>
     );
 };
