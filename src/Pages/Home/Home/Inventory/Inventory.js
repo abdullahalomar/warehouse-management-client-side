@@ -11,7 +11,7 @@ const Inventory = (props) => {
         
         <div className='col-sm-12 col-md-6 col-lg-4 gx-5 gy-3'>
             <div class='card' style={{width: '18rem'}}>
-            <img src={picture} class="card-img-top" alt=""  />
+            <img src={picture} class="card-img-top" width={100} alt=""  />
             <div class='card-body'>
                 <h5 class='card-title'>{name}</h5>
                 <h5>Price: ${price}</h5>
