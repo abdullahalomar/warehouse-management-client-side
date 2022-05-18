@@ -5,6 +5,7 @@ import facebook from '../../../images/social-icons/icons8-facebook-48.png';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 
 const SocialSignin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -12,6 +13,10 @@ const SocialSignin = () => {
 
     const navigate = useNavigate();
     let errorElement;
+
+    if (loading || gitloading) {
+        return <Loading></Loading>
+    }
 
     if (error || giterror) {
           errorElement = <div>
