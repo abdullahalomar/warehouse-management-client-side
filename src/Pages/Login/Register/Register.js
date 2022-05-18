@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -7,6 +7,7 @@ import SocialSignin from '../SocialSignin/SocialSignin';
 
 
 const Register = () => {
+  const [condition, setCondition] = useState(false);
   const [
     createUserWithEmailAndPassword,
     user,
@@ -22,16 +23,18 @@ const Register = () => {
 
   if (user) {
     navigate('/home');
-  }
+}
 
   const handleRegister = event => {
     event.preventDefault();
     const name = event.target.name.value;
-    const email = event?.target?.email?.value;
-    const password = event?.target?.password?.value;
-    
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    // const condition = event.target.terms.checked;
+    if (condition) {
+      createUserWithEmailAndPassword(email, password);
+    }
 
-    createUserWithEmailAndPassword(email, password);
   }
     return (
         <div className='container mt-4'>
@@ -55,7 +58,10 @@ const Register = () => {
     <Form.Control type="password" name='password' placeholder="Password" required/>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
+            <div className='d-flex gap-2'>
+            <Form.Check onClick={() => setCondition(!condition)} type="checkbox" name='terms' />
+            <label htmlFor="terms" className={`${condition ? 'text-primary' : 'text-danger'} `}>Accept Out Terms & Conditions</label>
+            </div>
   </Form.Group>
   <Button variant="secondary" type="submit">
     Register
