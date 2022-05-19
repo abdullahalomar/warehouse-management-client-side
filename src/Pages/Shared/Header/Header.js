@@ -1,6 +1,6 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Container, Nav, Navbar} from 'react-bootstrap';
+import { Container, Nav, Navbar, NavLink} from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -25,7 +25,16 @@ const Header = () => {
       
     </Nav>
     <Nav>
-      <Nav.Link as={Link} to="about">Blog</Nav.Link>
+              <Nav.Link as={Link} to="about">Blog</Nav.Link>
+              {
+                user && <>
+                  <NavLink as={Link} to="addinventory">Add</NavLink>
+                  
+                  <NavLink as={Link} to="manageinventory">Manage</NavLink>
+                  
+                <NavLink as={Link} to="myinventoryitem">My Item</NavLink>
+                </>
+              }
               {
                 user ?
                   
