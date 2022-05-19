@@ -2,11 +2,20 @@ import React from 'react';
 import useInventories from '../../hooks/useInventories';
 
 const ManageInventories = () => {
-    const [inventories] = useInventories();
+    const [inventories, setInventories] = useInventories();
     const handleDelete = id => {
-        const proceed = window.confirm('Are you sure?');
+        const proceed = window.confirm('Do you want to delete this item?');
         if (proceed) {
-            
+            const url = `http://localhost:5000/inventoryItem/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);
+                    const remaining = inventories.filter(inventory => inventory._id !== id);
+                    setInventories(remaining);
+            })
         }
     }
     return (
