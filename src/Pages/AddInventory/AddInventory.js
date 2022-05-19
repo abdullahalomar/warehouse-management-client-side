@@ -3,7 +3,22 @@ import { useForm } from "react-hook-form";
 
 const AddInventory = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        console.log(data);
+        const url = `http://localhost:5000/inventoryItem`;
+        fetch(url, {
+            method: 'POST',
+            Headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(result => {
+            console.log(result);
+        })
+    };
+
     return (
         <div className='w-50 mx-auto'>
             <h2>Add An Inventory Item</h2>
