@@ -19,21 +19,21 @@ const ManageInventories = () => {
         }
     }
     return (
-        <div>
-            <h2>Manage your Inventory Items: </h2>
+        <div className='mt-4'>
+            <h2 className='text-center'>Manage your Inventory Items</h2>
             {
                 inventories.map(inventory => <div
                     key={inventory._id}>
-                    <div className='container'>
+                    <div className='container mt-4'>
                     <Table striped bordered hover>
-                     <tbody>
-                       <tr>
-                                <td>{inventory.name}
-                                <button onClick={() => handleDelete(inventory._id)} className=' btn btn-danger'>Delete
-                       </button>
-                                </td>
-                         
-                      </tr>
+                    <tbody>
+                                
+                        <tr>
+                           <td colSpan={2}>{inventory.name}</td>
+                           <td><button onClick={() => handleDelete(inventory._id)} className=' btn btn-danger'>Delete
+                           </button>
+                           </td>
+                       </tr>
    
                     </tbody>
                    </Table>

@@ -15,7 +15,7 @@ const InventoryDetails = () => {
     return (
         <div className='text-center mt-5'>
             <img src={inventoryItem.picture} class="" width={100} alt=""  />
-            <h4>Inventory Items Id: {inventoryId}</h4>
+            <h5>Inventory Items Id: {inventoryId}</h5>
             <h5>Inventory Items Name: {inventoryItem.name}</h5>
             <h5>Inventory Items Price: ${inventoryItem.price}</h5>
                 <h6>Inventory Items Quantity: {inventoryItem.quantity}</h6>

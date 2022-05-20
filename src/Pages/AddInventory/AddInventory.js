@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 const AddInventory = () => {
     const { register, handleSubmit } = useForm();
+
     const onSubmit = data => {
         console.log(data);
         const url = `http://localhost:5000/inventoryItem`;
@@ -11,7 +12,7 @@ const AddInventory = () => {
             Headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data) 
+            body: JSON.stringify(data)
         })
             .then(response => response.json())
             .then(result => {
