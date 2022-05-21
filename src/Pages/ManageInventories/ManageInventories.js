@@ -16,7 +16,7 @@ const ManageInventories = () => {
                     const remaining = inventories.filter(inventory => inventory._id !== id);
                     setInventories(remaining);
             })
-        }
+         }
     }
     return (
         <div className='mt-4'>
@@ -26,19 +26,18 @@ const ManageInventories = () => {
                     key={inventory._id}>
                     <div className='container mt-4'>
                     <Table striped bordered hover>
-                    <tbody>
-                                
+                    <tbody>        
                         <tr>
                            <td colSpan={2}>{inventory.name}</td>
                            <td><button onClick={() => handleDelete(inventory._id)} className=' btn btn-danger'>Delete
-                                    </button>
+                           </button>
                            </td>
                        </tr>
                     </tbody>
                    </Table>
                     </div>
-                </div>)
-            }
+                </div>
+                )}
         </div>
     );
 };

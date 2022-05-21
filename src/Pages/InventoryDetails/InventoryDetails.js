@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
 const InventoryDetails = () => {
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => console.log(data);
+    
     const { inventoryId } = useParams();
     const [inventoryItem, setInventoryItem] = useState({});
 
@@ -23,11 +27,15 @@ const InventoryDetails = () => {
             <p>Inventory Items Details:
                 <br />{inventoryItem.short_desc}</p>
             
-            <Link to='/check'>
+            <Link to=''>
                 <div className='text-center mt-3'>
-                <button className='btn btn-secondary'>
-                    Ckeck Inventory Item :
+                <button className='btn btn-secondary my-3'>
+                    Delivered
                 </button>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input type="number" {...register("number", { min: 1, max: 999 })} />
+                    <input className='btn btn-success' type="submit" value='Add Item'/>
+                </form>
                 </div>
             </Link>
         </div>

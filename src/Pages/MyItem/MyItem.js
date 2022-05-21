@@ -22,7 +22,8 @@ const MyItem = () => {
 
     return (
         <div>
-            <h2 className='text-center my-4'>This is my item page { myitems.length}</h2>
+            <h2 className='text-center my-4'>This is my item page {myitems.length}</h2>
+            
         </div>
     );
 };
