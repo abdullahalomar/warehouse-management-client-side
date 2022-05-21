@@ -1,10 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-
 const Inventory = (props) => {
     const { _id, name, price, picture, short_desc, quantity, supplier_name } = props.inventory;
     const navigate = useNavigate();

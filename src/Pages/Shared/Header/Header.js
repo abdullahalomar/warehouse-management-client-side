@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 
 const Header = () => {
   const [user] = useAuthState(auth);
+    
   const handleSignout = () => {
     signOut(auth);
   }
@@ -39,6 +40,7 @@ const Header = () => {
                 user ?
                   
                   <button onClick={handleSignout} className='btn btn-danger'>Signout</button>
+                  
                   :
 
                   <Nav.Link as={Link} to="login">Login</Nav.Link>
