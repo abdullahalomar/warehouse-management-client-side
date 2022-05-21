@@ -31,17 +31,15 @@ const ManageInventories = () => {
                         <tr>
                            <td colSpan={2}>{inventory.name}</td>
                            <td><button onClick={() => handleDelete(inventory._id)} className=' btn btn-danger'>Delete
-                           </button>
+                                    </button>
                            </td>
                        </tr>
-   
                     </tbody>
                    </Table>
                     </div>
                 </div>)
             }
         </div>
-        
     );
 };
 

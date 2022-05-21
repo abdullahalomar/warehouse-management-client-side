@@ -3,7 +3,7 @@ import useInventories from '../../../hooks/useInventories';
 import Inventory from '../Home/Inventory/Inventory';
 
 const Inventories = () => {
-    const [inventories, setInventories] = useInventories(15);
+    const [inventories, setInventories] = useInventories(6);
 
     return (
         <div className='container mt-5'>
