@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 
 const InventoryDetails = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
     
     const { inventoryId } = useParams();
     const [inventoryItem, setInventoryItem] = useState({});
@@ -13,11 +12,27 @@ const InventoryDetails = () => {
         const url = `http://localhost:5000/inventoryItem/${inventoryId}`;
         
         fetch(url)
-        .then(response => response.json())
-        .then(json=>setInventoryItem(json))
-    },[])
+            .then(response => response.json())
+            .then(json => setInventoryItem(json))
+    }, []);
+    const onSubmit = data => {
+       
+        const url = 'http://localhost:5000/updateQuantity';
+       
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(result => {
+            console.log(result);
+        });
+    }
     return (
-        <div className='text-center mt-5'>
+        <div className='text-center mt-Y'>
             <img src={inventoryItem.picture} class="" width={100} alt=""  />
             <h5>Inventory Items Id: {inventoryId}</h5>
             <h5>Inventory Items Name: {inventoryItem.name}</h5>
@@ -26,18 +41,20 @@ const InventoryDetails = () => {
             <h6>Inventory Items Supplier: {inventoryItem.supplier_name}</h6>
             <p>Inventory Items Details:
                 <br />{inventoryItem.short_desc}</p>
-            
-            <Link to=''>
-                <div className='text-center mt-3'>
-                <button className='btn btn-secondary my-3'>
-                    Delivered
-                </button>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <input type="number" {...register("number", { min: 1, max: 999 })} />
-                    <input className='btn btn-success' type="submit" value='Add Item'/>
+                
+            <div className='w-50 mx-auto'>
+                <h4>Add Item Quantity</h4>
+                <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
+                    
+                    <input className='mb-3' placeholder='Add Quantity' type="hidden" {...register("id", { value: inventoryId})} />
+                    <input className='mb-3' placeholder='Add Quantity' type="number" {...register("quantity", { min: 1, max: 999 })} />
+                    <input className='btn btn-success' type="submit" value='Add Item Quantity'/>
                 </form>
                 </div>
-            </Link>
+            
+            <button className='btn btn-secondary mt-3 d-grid gap-2 col-6 mx-auto'>
+                    Delivered Item
+                </button>
         </div>
     );
 };
