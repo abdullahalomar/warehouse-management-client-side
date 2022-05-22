@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 
 const InventoryDetails = () => {
+    
     const { register, handleSubmit } = useForm();
     
     const { inventoryId } = useParams();
     const [inventoryItem, setInventoryItem] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/inventoryItem/${inventoryId}`;
+        const url = `https://fathomless-temple-57796.herokuapp.com/inventoryItem/${inventoryId}`;
+        // const url = `http://localhost:5000/inventoryItem/${inventoryId}`;
         
         fetch(url)
             .then(response => response.json())
@@ -17,7 +20,8 @@ const InventoryDetails = () => {
     }, []);
     const onSubmit = data => {
        
-        const url = 'http://localhost:5000/updateQuantity';
+        const url = `https://fathomless-temple-57796.herokuapp.com/updateQuantity/${inventoryId}`;
+        // const url = `http://localhost:5000/updateQuantity/${inventoryId}`;
        
         fetch(url, {
             method: 'POST',
@@ -28,8 +32,33 @@ const InventoryDetails = () => {
         })
             .then(response => response.json())
             .then(result => {
-            console.log(result);
-        });
+                console.log(result);
+                if (result) {
+                    toast('Quantity added Successfully!!');
+                }
+            });
+        
+            
+    }
+
+    const decrease = () => {
+        // const url = `http://localhost:5000/decreaseQuantity/${inventoryId}`;
+        const url = `https://fathomless-temple-57796.herokuapp.com/decreaseQuantity/${inventoryId}`;
+       
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    toast('Quantity delivered Successfully!!');
+                }
+            });
+        
     }
     return (
         <div className='text-center mt-Y'>
@@ -46,13 +75,12 @@ const InventoryDetails = () => {
                 <h4>Add Item Quantity</h4>
                 <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                     
-                    <input className='mb-3' placeholder='Add Quantity' type="hidden" {...register("id", { value: inventoryId})} />
                     <input className='mb-3' placeholder='Add Quantity' type="number" {...register("quantity", { min: 1, max: 999 })} />
                     <input className='btn btn-success' type="submit" value='Add Item Quantity'/>
                 </form>
                 </div>
             
-            <button className='btn btn-secondary mt-3 d-grid gap-2 col-6 mx-auto'>
+            <button className='btn btn-secondary mt-3 d-grid gap-2 col-6 mx-auto' onClick={()=>decrease()}>
                     Delivered Item
                 </button>
         </div>

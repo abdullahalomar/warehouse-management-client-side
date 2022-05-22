@@ -5,8 +5,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import SocialSignin from '../SocialSignin/SocialSignin';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const Login = () => {
   const emailRef = useRef();
@@ -30,7 +31,7 @@ const Login = () => {
 }
 
   if (user) {
-    navigate(from, {replace: true});
+    // navigate(from, {replace: true});
   }
 
   if (error) {
@@ -39,11 +40,15 @@ const Login = () => {
     </div> 
 }
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+
+    const { data } = await axios.post('https://fathomless-temple-57796.herokuapp.com/login', { email });
+    localStorage.setItem('Token', data.Token);
+    navigate(from, {replace: true});
   }
 
   const navigateRegister = event => {
@@ -94,7 +99,7 @@ const Login = () => {
         <h6>Forget Password? <button to='/register' className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button></h6>
         </div>
         <SocialSignin></SocialSignin>
-        <ToastContainer></ToastContainer>
+        
         </div>
     );
 };

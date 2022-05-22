@@ -8,7 +8,7 @@ const ManageInventories = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Do you want to delete this item?');
         if (proceed) {
-            const url = `http://localhost:5000/inventoryItem/${id}`;
+            const url = `https://fathomless-temple-57796.herokuapp.com/inventoryItem/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -21,9 +21,9 @@ const ManageInventories = () => {
     }
 
     const navigate = useNavigate();
-    const NavigateInventoryDetails = id => {
-        navigate(`/inventory/${id}`);
-    }
+    // const NavigateInventoryDetails = id => {
+    //     navigate(`/inventory/${id}`);
+    // }
     return (
         <div className='mt-4'>
             <h2 className='text-center'>Manage your Inventory Items</h2>
@@ -37,8 +37,8 @@ const ManageInventories = () => {
                            <td colSpan={2}>{inventory.name}</td>
                             <td>
                                
-                                <button onClick={()=> NavigateInventoryDetails(inventory._id)} className=' btn btn-success mx-3'>Add a new item
-                                </button> 
+                                {/* <button onClick={()=> NavigateInventoryDetails(inventory._id)} className=' btn btn-success mx-3'>Add a new item
+                                </button>  */}
                          
                                 <button onClick={() => handleDelete(inventory._id)} className=' btn btn-danger'>Delete
                                </button>        

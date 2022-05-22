@@ -14,6 +14,9 @@ import AddInventory from './Pages/AddInventory/AddInventory';
 import ManageInventories from './Pages/ManageInventories/ManageInventories';
 import MyItem from './Pages/MyItem/MyItem';
 import Blog from './Pages/Blog/Blog';
+import { ToastContainer } from 'react-toastify';
+import Contact from './Pages/Contact/Contact';
+import Quote from './Pages/Quote/Quote';
 
 function App() {
   return (
@@ -26,7 +29,10 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/inventories' element={<Inventories></Inventories>}></Route>
+        <Route path='/contact' element={<Contact></Contact>}></Route>
+        <Route path='/quote' element={<Quote></Quote>}></Route>
         <Route path='/inventory/:inventoryId' element={<InventoryDetails></InventoryDetails>}></Route>
+        
         <Route path='/check' element={
           <RequireAuth>
             <Check></Check>
@@ -50,6 +56,7 @@ function App() {
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

@@ -7,13 +7,13 @@ const useInventories = (count = 0) => {
     useEffect(() => {
         if (count) {
          
-        fetch('http://localhost:5000/inventoryItem')
+        fetch('https://fathomless-temple-57796.herokuapp.com/inventoryItem')
         .then(response => response.json())
         .then(json => setInventories(json.slice(0,count)))
 
         } else {
             
-        fetch('http://localhost:5000/inventoryItem')
+        fetch('https://fathomless-temple-57796.herokuapp.com/inventoryItem')
         .then(response => response.json())
         .then(json => setInventories(json.slice()))
 

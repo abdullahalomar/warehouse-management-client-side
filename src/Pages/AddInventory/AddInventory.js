@@ -2,6 +2,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddInventory = () => {
@@ -10,7 +11,7 @@ const AddInventory = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         data.email = user.email
-        const url = `http://localhost:5000/inventoryItem`;
+        const url = `https://fathomless-temple-57796.herokuapp.com/inventoryItem`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -20,7 +21,10 @@ const AddInventory = () => {
         })
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+                console.log(result);
+                if (result) {
+                    toast('Inventory item added Successfully!!');
+                }
         });
     };
 
