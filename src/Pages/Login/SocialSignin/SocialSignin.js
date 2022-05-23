@@ -4,15 +4,18 @@ import github from '../../../images/social-icons/icons8-github-50.png';
 import facebook from '../../../images/social-icons/icons8-facebook-48.png';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
+import useToken from '../../../hooks/useToken';
 
 const SocialSignin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, gituser, gitloading, giterror] = useSignInWithGithub(auth);
-
+    const [token] = useToken(user || gituser)
     const navigate = useNavigate();
-    let errorElement;
+    const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
+  let errorElement;
 
     if (loading || gitloading) {
         return <Loading></Loading>
@@ -24,8 +27,8 @@ const SocialSignin = () => {
           </div> 
     }
 
-    if (user || gituser) {
-        navigate('/home');
+    if (token) {
+        navigate(from, {replace: true});
       }
     return (
         <div>

@@ -8,6 +8,7 @@ import SocialSignin from '../SocialSignin/SocialSignin';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
   const emailRef = useRef();
@@ -25,13 +26,14 @@ const Login = () => {
   ] = useSignInWithEmailAndPassword(auth);
 
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [token] = useToken(user);
 
   if (loading || sending) {
     return <Loading></Loading>
 }
 
-  if (user) {
-    // navigate(from, {replace: true});
+  if (token) {
+    navigate(from, {replace: true});
   }
 
   if (error) {
@@ -44,11 +46,8 @@ const Login = () => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
-    await signInWithEmailAndPassword(email, password);
 
-    const { data } = await axios.post('https://fathomless-temple-57796.herokuapp.com/login', { email });
-    localStorage.setItem('Token', data.Token);
-    navigate(from, {replace: true});
+    await signInWithEmailAndPassword(email, password);
   }
 
   const navigateRegister = event => {
