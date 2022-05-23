@@ -20,7 +20,7 @@ const Inventory = (props) => {
                     <p class="card-text">{short_desc}</p>
                 </div>
                 <div class="card-footer">
-                    <button onClick={()=> NavigateInventoryDetails(_id)} className='btn btn-secondary'>Stock Update</button>
+                    <button onClick={()=> NavigateInventoryDetails(_id)} className='btn btn-secondary w-100'>Stock Update</button>
                 </div>
             </div>         
         </div>

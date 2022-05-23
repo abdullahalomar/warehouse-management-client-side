@@ -37,10 +37,6 @@ const InventoryDetails = () => {
             .then(result =>
                 setIsReload(!reload));
                 
-                // if (result) {
-                //     toast('Quantity added Successfully!!');
-                // }
-            
     }
 
     const decrease = () => {
