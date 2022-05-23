@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 
 const InventoryDetails = () => {
-    
     const { register, handleSubmit } = useForm();
     
     const { inventoryId } = useParams();
     const [inventoryItem, setInventoryItem] = useState({});
+
+    const [reload, setIsReload] = useState(true);
+
 
     useEffect(() => {
         const url = `https://fathomless-temple-57796.herokuapp.com/inventoryItem/${inventoryId}`;
@@ -17,7 +19,8 @@ const InventoryDetails = () => {
         fetch(url)
             .then(response => response.json())
             .then(json => setInventoryItem(json))
-    }, []);
+    }, [reload]);
+
     const onSubmit = data => {
        
         const url = `https://fathomless-temple-57796.herokuapp.com/updateQuantity/${inventoryId}`;
@@ -31,13 +34,12 @@ const InventoryDetails = () => {
             body: JSON.stringify(data)
         })
             .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                if (result) {
-                    toast('Quantity added Successfully!!');
-                }
-            });
-        
+            .then(result =>
+                setIsReload(!reload));
+                
+                // if (result) {
+                //     toast('Quantity added Successfully!!');
+                // }
             
     }
 
@@ -52,16 +54,13 @@ const InventoryDetails = () => {
             },
         })
             .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                if (result) {
-                    toast('Quantity delivered Successfully!!');
-                }
-            });
-        
+            .then(result =>
+                setIsReload(!reload));
+            
     }
+    
     return (
-        <div className='text-center mt-Y'>
+        <div className='text-center mt-4'>
             <img src={inventoryItem.picture} class="" width={100} alt=""  />
             <h5>Inventory Items Id: {inventoryId}</h5>
             <h5>Inventory Items Name: {inventoryItem.name}</h5>
